@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">VK App</string>
+    <string name="text_field_label">Введите текст или номер</string>
+    <string name="phone_error_message">Введите корректный номер телефона</string>
+    <string name="button_open_second_activity">Открыть вторую Activity</string>
+    <string name="button_call_friend">Позвонить другу</string>
+    <string name="button_share_text">Поделиться текстом</string>
 </resources>
