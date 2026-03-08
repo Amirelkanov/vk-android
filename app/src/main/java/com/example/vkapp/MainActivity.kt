@@ -1,47 +1,45 @@
 package com.example.vkapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.net.toUri
+import com.example.vkapp.ui.screens.MainScreen
 import com.example.vkapp.ui.theme.VKAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             VKAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                MainScreen(
+                    openSecondActivity = { text ->
+                        val intent = SecondActivity.createIntent(this, text)
+
+                        startActivity(intent)
+                    },
+
+                    dialPhone = { phone ->
+                        val intent = Intent(Intent.ACTION_DIAL, "tel:$phone".toUri())
+
+                        startActivity(intent)
+                    },
+
+                    shareText = { textToShare ->
+                        val intent = Intent(Intent.ACTION_SEND).apply {
+                            putExtra(Intent.EXTRA_TEXT, textToShare)
+                            type = "text/plain"
+                        }
+                        val shareIntent = Intent.createChooser(intent, null)
+
+                        startActivity(shareIntent)
+                    }
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    VKAppTheme {
-        Greeting("Android")
     }
 }
