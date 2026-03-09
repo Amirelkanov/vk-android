@@ -28,6 +28,7 @@ import com.example.vkapp.presentation.theme.VkAppTheme
 @Composable
 fun AppDetailsScreen(
     modifier: Modifier = Modifier,
+    onBackClick: () -> Unit = {},
 ) {
     val app = remember { getApp() }
 
@@ -38,10 +39,7 @@ fun AppDetailsScreen(
 
     Column(modifier) {
         Toolbar(
-            onBackClick = {
-                // TODO: Открыть предыдущий экран через Jetpack Navigation
-                Toast.makeText(context, underDevelopmentText, Toast.LENGTH_SHORT).show()
-            },
+            onBackClick = onBackClick,
             onShareClick = {
                 Toast.makeText(context, underDevelopmentText, Toast.LENGTH_SHORT).show()
             },
@@ -118,6 +116,7 @@ private fun Preview() {
     VkAppTheme {
         AppDetailsScreen(
             modifier = Modifier.fillMaxSize(),
+            onBackClick = {},
         )
     }
 }

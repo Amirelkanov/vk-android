@@ -26,6 +26,7 @@ import coil3.compose.AsyncImage
 import com.example.vkapp.R
 import com.example.vkapp.domain.appdetails.AppDetails
 import com.example.vkapp.domain.common.Category
+import com.example.vkapp.presentation.common.title
 import com.example.vkapp.presentation.theme.VkAppTheme
 import kotlin.math.roundToInt
 
@@ -49,7 +50,7 @@ fun AppDetailsHeader(
         Spacer(Modifier.width(16.dp))
         Column {
             Text(
-                text = getCategoryText(app.category),
+                text = app.category.title(),
                 color = MaterialTheme.colorScheme.secondary,
                 fontSize = 12.sp,
             )
@@ -86,13 +87,6 @@ fun AppDetailsHeader(
     }
 }
 
-// Статичные строки, которые не приходят из бэкенда
-// нужно хранить в ресурсах (strings.xml).
-@Composable
-private fun getCategoryText(category: Category): String = when (category) {
-    Category.APP -> stringResource(R.string.category_app)
-    Category.GAME -> stringResource(R.string.category_game)
-}
 
 @Preview
 @Composable
