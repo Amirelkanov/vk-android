@@ -3,6 +3,10 @@
 
     <string name="category_app">Приложения</string>
     <string name="category_game">Игры</string>
+    <string name="category_utilities">Инструменты</string>
+    <string name="category_finance">Финансы</string>
+    <string name="category_transport">Транспорт</string>
+    <string name="category_music">Музыка</string>
 
     <string name="app_details_age">Возраст</string>
     <string name="app_details_size">Размер</string>

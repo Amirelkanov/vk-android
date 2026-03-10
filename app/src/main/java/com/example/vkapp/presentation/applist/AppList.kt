@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.vkapp.domain.applist.AppListItem
+import com.example.vkapp.domain.common.Category
 
 @Composable
 fun AppList(
@@ -26,15 +27,16 @@ fun AppList(
 
             if (index < items.size - 1) {
                 HorizontalDivider(
+                    thickness = 2.dp,
                     modifier = Modifier.padding(horizontal = 16.dp),
-                    color = colorScheme.onSurface.copy(alpha = 0.12f)
+                    color = colorScheme.onSurface.copy(alpha = 0.04f)
                 )
             }
         }
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun Preview() {
     AppList(
@@ -44,21 +46,21 @@ private fun Preview() {
                 name = "Приложение 1",
                 iconUrl = "https://platforms.su/storage/product-logo/1755356939_YFj3rQuKeP.png",
                 shortDescription = "Краткое описание приложения 1",
-                category = com.example.vkapp.domain.common.Category.APP
+                category = Category.APP
             ),
             AppListItem(
                 id = "2",
                 name = "Приложение 2",
                 iconUrl = "https://platforms.su/storage/product-logo/1755356939_YFj3rQuKeP.png",
                 shortDescription = "Краткое описание приложения 2",
-                category = com.example.vkapp.domain.common.Category.APP
+                category = Category.APP
             ),
             AppListItem(
                 id = "3",
                 name = "Приложение 3",
                 iconUrl = "https://platforms.su/storage/product-logo/1755356939_YFj3rQuKeP.png",
                 shortDescription = "Краткое описание приложения 3",
-                category = com.example.vkapp.domain.common.Category.APP
+                category = Category.APP
             ),
         ),
         onAppClick = {},

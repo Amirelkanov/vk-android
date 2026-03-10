@@ -30,6 +30,7 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.example.vkapp.R
 import com.example.vkapp.domain.applist.AppListItem
+import com.example.vkapp.domain.common.Category
 import com.example.vkapp.presentation.common.title
 
 
@@ -41,9 +42,9 @@ fun AppListItem(
 ) {
     Row(
         modifier = modifier
-            .padding(horizontal = 16.dp, vertical = 12.dp)
-            .fillMaxWidth()
-            .clickable { onClick(appListItem.id) },
+            .clickable { onClick(appListItem.id) }
+            .padding(horizontal = 16.dp, vertical = 14.dp)
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AsyncImage(
@@ -55,7 +56,7 @@ fun AppListItem(
             error = ColorPainter(colorScheme.primaryContainer),
             placeholder = painterResource(R.drawable.loading_img),
             modifier = Modifier
-                .size(56.dp)
+                .size(64.dp)
                 .clip(RoundedCornerShape(12.dp)),
         )
         Spacer(modifier = Modifier.width(16.dp))
@@ -68,6 +69,7 @@ fun AppListItem(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = appListItem.shortDescription,
                 style = MaterialTheme.typography.bodySmall,
@@ -75,26 +77,27 @@ fun AppListItem(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(6.dp))
+
             Text(
                 text = appListItem.category.title(),
                 style = MaterialTheme.typography.labelMedium,
-                color = colorScheme.outline,
+                color = colorScheme.secondary.copy(alpha = 0.65f),
             )
         }
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun AppListItemPreview() {
     AppListItem(
         appListItem = AppListItem(
             id = "1",
             name = "Приложение 1",
-            iconUrl = "https://platforms.su/storage/product-logo/1755356939_YFj3rQuKeP.png",
+            iconUrl = "",
             shortDescription = "Краткое описание приложения 1",
-            category = com.example.vkapp.domain.common.Category.APP
+            category = Category.APP
         ),
         onClick = {}
     )
