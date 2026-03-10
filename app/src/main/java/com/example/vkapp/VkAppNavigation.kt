@@ -24,7 +24,7 @@ fun VkAppNavHost(
         composable(AppList.route) {
             AppListScreen(
                 onAppClick = {
-                    navController.navigate("app_details")
+                    navController.navigate(AppDetails.route)
                 },
             )
         }
