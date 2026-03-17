@@ -37,12 +37,13 @@ import com.example.vkapp.presentation.common.title
 @Composable
 fun AppListItem(
     appListItem: AppListItem,
-    onClick: (String) -> Unit,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    onLogoClick: () -> Unit,
 ) {
     Row(
         modifier = modifier
-            .clickable { onClick(appListItem.id) }
+            .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -57,7 +58,8 @@ fun AppListItem(
             placeholder = painterResource(R.drawable.loading_img),
             modifier = Modifier
                 .size(64.dp)
-                .clip(RoundedCornerShape(12.dp)),
+                .clip(RoundedCornerShape(12.dp))
+                .clickable { onLogoClick() },
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {
@@ -99,6 +101,7 @@ private fun AppListItemPreview() {
             shortDescription = "Краткое описание приложения 1",
             category = Category.APP
         ),
-        onClick = {}
+        onClick = {},
+        onLogoClick = {}
     )
 }

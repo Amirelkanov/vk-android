@@ -17,8 +17,9 @@ import com.example.vkapp.domain.common.Category
 fun AppList(
     items: List<AppListItem>,
     innerPadding: PaddingValues,
-    onAppClick: (String) -> Unit,
     modifier: Modifier = Modifier,
+    onClick: (AppListItem) -> Unit = {},
+    onLogoClick: (AppListItem) -> Unit = {}
 ) {
     LazyColumn(
         modifier = modifier,
@@ -26,8 +27,9 @@ fun AppList(
     ) {
         itemsIndexed(items) { index, item ->
             AppListItem(
+                onClick = { onClick(item) },
+                onLogoClick = { onLogoClick(item) },
                 appListItem = item,
-                onClick = onAppClick,
             )
 
             if (index < items.size - 1) {
@@ -69,6 +71,5 @@ private fun Preview() {
             ),
         ),
         innerPadding = PaddingValues(0.dp),
-        onAppClick = {},
     )
 }
