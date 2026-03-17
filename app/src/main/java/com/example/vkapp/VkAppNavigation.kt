@@ -17,9 +17,6 @@ fun VkAppNavHost(
     NavHost(
         navController = navController,
         startDestination = AppList.route,
-        modifier = Modifier
-            .fillMaxSize()
-            .safeDrawingPadding()
     ) {
         composable(AppList.route) {
             AppListScreen(

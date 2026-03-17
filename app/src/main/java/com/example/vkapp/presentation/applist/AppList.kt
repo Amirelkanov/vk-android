@@ -1,5 +1,6 @@
 package com.example.vkapp.presentation.applist
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -15,10 +16,14 @@ import com.example.vkapp.domain.common.Category
 @Composable
 fun AppList(
     items: List<AppListItem>,
+    innerPadding: PaddingValues,
     onAppClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(modifier = modifier) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding())
+    ) {
         itemsIndexed(items) { index, item ->
             AppListItem(
                 appListItem = item,
@@ -63,6 +68,7 @@ private fun Preview() {
                 category = Category.APP
             ),
         ),
+        innerPadding = PaddingValues(0.dp),
         onAppClick = {},
     )
 }

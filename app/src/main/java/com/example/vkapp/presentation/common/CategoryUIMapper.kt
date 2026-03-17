@@ -13,4 +13,5 @@ fun Category.title(): String = when (this) {
     Category.FINANCE -> stringResource(R.string.category_finance)
     Category.TRANSPORT -> stringResource(R.string.category_transport)
     Category.MUSIC -> stringResource(R.string.category_music)
+    Category.MARKET -> stringResource(R.string.category_market)
 }

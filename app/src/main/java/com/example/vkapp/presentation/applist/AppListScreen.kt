@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.vkapp.domain.applist.AppListItem
 import com.example.vkapp.domain.common.Category
+import com.example.vkapp.presentation.theme.RuStoreBlue
 
 @Composable
 fun AppListScreen(
@@ -24,9 +25,9 @@ fun AppListScreen(
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
-        containerColor = colorScheme.primary,
+        containerColor = RuStoreBlue,
         topBar = {
-            Toolbar(
+            AppListTopBar(
                 onGridClick = { },
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 28.dp)
             )
@@ -35,9 +36,10 @@ fun AppListScreen(
         AppList(
             items = appList,
             onAppClick = { onAppClick() }, // NOTE: Надо тут id, наверное, прокидывать, но пока так
+            innerPadding = innerPadding,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
+                .padding(top = innerPadding.calculateTopPadding())
                 .clip(
                     RoundedCornerShape(
                         topStart = 16.dp,
@@ -102,15 +104,22 @@ private fun getAppList(): List<AppListItem> {
         ),
         AppListItem(
             id = "7",
+            name = "WildBerries",
+            iconUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK_NTOgWcZLXmTBnA4scv1uAvvaBP-ZO2MKQ&s",
+            shortDescription = "Скидки каждый день",
+            category = Category.MARKET
+        ),
+        AppListItem(
+            id = "8",
             name = "VK Music",
-            iconUrl = "",
+            iconUrl = "https://cdn-yc-static.i-m-i.ru/store/uploads/profile/2358/photo/main-520d866638db75f4a4d3e430d7feef25.jpeg",
             shortDescription = "Музыка ВКонтакте без рекламы",
             category = Category.MUSIC
         ),
         AppListItem(
             id = "9",
-            name = "VK Games",
-            iconUrl = "",
+            name = "VK Play",
+            iconUrl = "https://corp.vkcdn.ru/media/images/VKP_ninja_1_CB6C23B.png",
             shortDescription = "Игры ВКонтакте без рекламы",
             category = Category.GAME
         ),
