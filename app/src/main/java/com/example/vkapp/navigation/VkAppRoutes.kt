@@ -1,4 +1,4 @@
-package com.example.vkapp
+package com.example.vkapp.navigation
 
 interface VkAppRoutes {
     val route: String

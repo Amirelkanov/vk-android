@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.rememberNavController
-import com.example.vkapp.presentation.applist.AppListScreen
+import com.example.vkapp.navigation.VkAppNavHost
 import com.example.vkapp.presentation.theme.VkAppTheme
 
 class MainActivity : ComponentActivity() {
