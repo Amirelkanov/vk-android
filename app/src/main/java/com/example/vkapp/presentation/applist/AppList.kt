@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.vkapp.domain.applist.AppListItem
-import com.example.vkapp.domain.common.Category
+import com.example.vkapp.domain.Category
 
 @Composable
 fun AppList(

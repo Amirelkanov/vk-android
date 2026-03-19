@@ -1,14 +1,14 @@
-package com.example.vkapp.domain.appdetails
+package com.example.vkapp.data.appdetails
 
 import com.example.vkapp.domain.Category
 
-data class AppDetails(
+data class AppDetailsDto(
     val name: String,
     val developer: String,
     val category: Category,
     val ageRating: Int,
-    val size: Float,
-    val iconUrl: String,
-    val screenshotUrlList: List<String>,
+    val size: Double,
+    val icon: String,
+    val screenshots: List<String>,
     val description: String,
 )

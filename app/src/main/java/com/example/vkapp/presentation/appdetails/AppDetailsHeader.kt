@@ -25,8 +25,8 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.vkapp.R
 import com.example.vkapp.domain.appdetails.AppDetails
-import com.example.vkapp.domain.common.Category
-import com.example.vkapp.presentation.common.title
+import com.example.vkapp.domain.Category
+import com.example.vkapp.presentation.title
 import com.example.vkapp.presentation.theme.VkAppTheme
 import kotlin.math.roundToInt
 

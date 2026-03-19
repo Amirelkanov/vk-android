@@ -1,8 +1,8 @@
-package com.example.vkapp.domain.applist
+package com.example.vkapp.data.applist
 
 import com.example.vkapp.domain.Category
 
-data class AppListItem(
+data class AppListItemDto(
     val id: String,
     val name: String,
     val iconUrl: String,

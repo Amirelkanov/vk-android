@@ -1,9 +1,9 @@
-package com.example.vkapp.presentation.common
+package com.example.vkapp.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.example.vkapp.R
-import com.example.vkapp.domain.common.Category
+import com.example.vkapp.domain.Category
 
 @Composable
 fun Category.title(): String = when (this) {
