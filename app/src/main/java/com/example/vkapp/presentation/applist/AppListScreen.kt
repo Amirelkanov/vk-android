@@ -16,16 +16,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.example.vkapp.presentation.theme.RuStoreBlue
 import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun AppListScreen(
     onAppClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: AppListViewModel = hiltViewModel()
 ) {
-    val viewModel = viewModel<AppListViewModel>()
     val state by viewModel.state.collectAsState()
     val events = viewModel.events
 

@@ -1,8 +1,9 @@
 package com.example.vkapp.domain.appdetails
 
 import com.example.vkapp.domain.Category
+import javax.inject.Inject
 
-class GetAppDetailsUseCase(
+class GetAppDetailsUseCase @Inject constructor(
     private val appDetailsRepository: AppDetailsRepository,
 ) {
     suspend operator fun invoke(): AppDetails {

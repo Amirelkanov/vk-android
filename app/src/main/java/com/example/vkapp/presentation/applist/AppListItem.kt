@@ -31,7 +31,7 @@ import coil3.request.crossfade
 import com.example.vkapp.R
 import com.example.vkapp.domain.applist.AppListItem
 import com.example.vkapp.domain.Category
-import com.example.vkapp.presentation.title
+import com.example.vkapp.presentation.common.title
 
 
 @Composable

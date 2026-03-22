@@ -4,10 +4,11 @@ import com.example.vkapp.data.appdetails.AppDetailsDto
 import com.example.vkapp.data.applist.AppListItemDto
 import com.example.vkapp.domain.Category
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 import kotlin.time.Duration.Companion.seconds
 
 // Представим, что этот класс ходит в сеть.
-class AppApi {
+class AppApi @Inject constructor() {
     suspend fun getAppDetails(): AppDetailsDto {
         // Эмулируем загрузку с бэкенда
         delay(2.seconds)
