@@ -1,9 +1,10 @@
 package com.example.vkapp.data.appdetails
 
 import com.example.vkapp.domain.appdetails.AppDetails
+import javax.inject.Inject
 
 
-class AppDetailsMapper {
+class AppDetailsMapper @Inject constructor() {
     fun toDomain(dto: AppDetailsDto): AppDetails = AppDetails(
         name = dto.name,
         developer = dto.developer,

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vkapp.data.applist.AppListRepositoryImpl
 import com.example.vkapp.domain.applist.AppListItem
-import com.example.vkapp.domain.Category
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.delay
@@ -12,10 +12,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.time.Duration.Companion.seconds
 
-class AppListViewModel : ViewModel() {
-    private val appListRepository = AppListRepositoryImpl()
+@HiltViewModel
+class AppListViewModel @Inject constructor(
+    private val appListRepository: AppListRepositoryImpl
+) : ViewModel() {
 
     private val _state = MutableStateFlow<AppListState>(AppListState.Loading)
     val state = _state.asStateFlow()

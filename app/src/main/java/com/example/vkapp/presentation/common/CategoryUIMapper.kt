@@ -1,4 +1,4 @@
-package com.example.vkapp.presentation
+package com.example.vkapp.presentation.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
