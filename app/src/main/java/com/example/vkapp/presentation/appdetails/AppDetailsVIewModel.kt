@@ -1,9 +1,11 @@
 package com.example.vkapp.presentation.appdetails
 
 import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vkapp.domain.appdetails.GetAppDetailsUseCase
+import com.example.vkapp.navigation.AppDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
@@ -17,7 +19,12 @@ import javax.inject.Inject
 @HiltViewModel
 class AppDetailsViewModel @Inject constructor(
     private val getAppDetailsUseCase: GetAppDetailsUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+    // Лучше в худшем случае падать - если у нас нет такого аргумента,
+    // то непонятно, какое поведение мы от ViewModel ждем
+    private val appId: String = checkNotNull(savedStateHandle[AppDetails.APP_ID_ARG])
+
     private val _state = MutableStateFlow<AppDetailsState>(AppDetailsState.Loading)
     val state = _state.asStateFlow()
 
@@ -49,7 +56,7 @@ class AppDetailsViewModel @Inject constructor(
             _state.value = AppDetailsState.Loading
 
             runCatching {
-                val appDetails = getAppDetailsUseCase("fa2e31b8-1234-4cf7-9914-108a170a1b01")
+                val appDetails = getAppDetailsUseCase(appId)
 
                 _state.value = AppDetailsState.Content(
                     appDetails = appDetails,

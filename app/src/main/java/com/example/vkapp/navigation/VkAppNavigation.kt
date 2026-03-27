@@ -17,15 +17,22 @@ fun VkAppNavHost(
     ) {
         composable(AppList.route) {
             AppListScreen(
-                onAppClick = {
-                    navController.navigate(AppDetails.route)
-                },
+                onAppClick = { id -> navController.navigateToSingleAppDetails(id) },
             )
         }
-        composable(AppDetails.route) {
+        composable(
+            route = AppDetails.routeWithArgs,
+            arguments = AppDetails.arguments
+        ) {
             AppDetailsScreen(
                 onBackClick = { navController.popBackStack() },
             )
         }
     }
 }
+
+fun NavHostController.navigateSingleTopTo(route: String) =
+    this.navigate(route) { launchSingleTop = true }
+
+private fun NavHostController.navigateToSingleAppDetails(appId: String) =
+    this.navigateSingleTopTo("${AppDetails.route}/$appId")

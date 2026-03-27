@@ -10,12 +10,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -41,8 +44,10 @@ fun AppDetailsHeader(
     ) {
         AsyncImage(
             model = appDetails.iconUrl,
-            contentDescription = null,
+            contentDescription = appDetails.name,
             contentScale = ContentScale.Crop,
+            error = ColorPainter(colorScheme.surfaceVariant),
+            placeholder = painterResource(R.drawable.loading_img),
             modifier = Modifier
                 .size(128.dp)
                 .clip(RoundedCornerShape(16.dp)),
@@ -51,7 +56,7 @@ fun AppDetailsHeader(
         Column {
             Text(
                 text = appDetails.category.title(),
-                color = MaterialTheme.colorScheme.secondary,
+                color = colorScheme.secondary,
                 fontSize = 12.sp,
             )
             Spacer(Modifier.height(4.dp))

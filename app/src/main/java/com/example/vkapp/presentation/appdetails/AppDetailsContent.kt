@@ -49,7 +49,8 @@ fun AppDetailsContent(
         )
         Spacer(Modifier.height(12.dp))
         ScreenshotsList(
-            screenshotUrlList = listOf("1", "2", "3"),
+            // Фолбэк чисто чтобы блок скриншотов был - не хочется прям мощно переписывать материал с практики
+            screenshotUrlList = appDetails.screenshotUrlList ?: listOf("1", "2", "3"),
             contentPadding = PaddingValues(horizontal = 16.dp),
         )
         Spacer(Modifier.height(12.dp))
