@@ -49,7 +49,8 @@ fun AppDetailsContent(
         )
         Spacer(Modifier.height(12.dp))
         ScreenshotsList(
-            screenshotUrlList = appDetails.screenshotUrlList,
+            // Фолбэк чисто чтобы блок скриншотов был - не хочется прям мощно переписывать материал с практики
+            screenshotUrlList = appDetails.screenshotUrlList ?: listOf("1", "2", "3"),
             contentPadding = PaddingValues(horizontal = 16.dp),
         )
         Spacer(Modifier.height(12.dp))
@@ -84,6 +85,7 @@ private fun Preview() {
         AppDetailsContent(
             content = AppDetailsState.Content(
                 appDetails = AppDetails(
+                    id = "1",
                     name = "Гильдия Героев: Экшен ММО РПГ",
                     developer = "VK Play",
                     category = Category.GAME,

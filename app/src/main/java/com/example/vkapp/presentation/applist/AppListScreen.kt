@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun AppListScreen(
-    onAppClick: () -> Unit,
+    onAppClick: (appId: String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AppListViewModel = hiltViewModel()
 ) {
@@ -70,7 +70,7 @@ fun AppListScreen(
             is AppListState.Content -> {
                 AppList(
                     items = currentState.appList,
-                    onClick = { onAppClick() },
+                    onClick = { onAppClick(it.id) },
                     onLogoClick = { viewModel.showAppTitleMessage(it) },
                     innerPadding = innerPadding,
                     modifier = Modifier

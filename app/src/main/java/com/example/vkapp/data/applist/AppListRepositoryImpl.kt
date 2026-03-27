@@ -1,6 +1,6 @@
 package com.example.vkapp.data.applist
 
-import com.example.vkapp.data.AppApi
+import com.example.vkapp.data.network.AppApi
 import com.example.vkapp.domain.applist.AppListItem
 import com.example.vkapp.domain.applist.AppListRepository
 import javax.inject.Inject

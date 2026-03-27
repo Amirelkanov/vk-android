@@ -10,10 +10,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.ColorPainter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,7 +45,10 @@ fun ScreenshotsList(
         ) { index ->
             AsyncImage(
                 model = screenshotUrlList[index],
-                contentDescription = null,
+                contentDescription = "Screenshot $index",
+                contentScale = ContentScale.Crop,
+                error = ColorPainter(colorScheme.surfaceVariant),
+                placeholder = painterResource(R.drawable.loading_img),
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(16f / 9f)

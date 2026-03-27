@@ -54,7 +54,7 @@ fun AppListItem(
                 .crossfade(true).build(),
             contentDescription = appListItem.name,
             contentScale = ContentScale.Crop,
-            error = ColorPainter(colorScheme.primaryContainer),
+            error = ColorPainter(colorScheme.surfaceVariant),
             placeholder = painterResource(R.drawable.loading_img),
             modifier = Modifier
                 .size(64.dp)
