@@ -1,4 +1,4 @@
-package com.example.vkapp.ui.theme
+package com.example.vkapp.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
