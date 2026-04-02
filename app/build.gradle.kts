@@ -45,6 +45,10 @@ android {
     buildFeatures {
         compose = true
     }
+
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -81,4 +85,8 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 }
