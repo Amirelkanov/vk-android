@@ -15,5 +15,6 @@ class AppDetailsMapper @Inject constructor() {
         iconUrl = dto.iconUrl,
         screenshotUrlList = dto.screenshots,
         description = dto.description,
+
     )
 }

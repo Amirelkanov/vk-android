@@ -78,6 +78,9 @@ fun AppDetailsScreen(
                     onDeveloperClick = {
                         viewModel.showUnderDevelopmentMessage()
                     },
+                    onWishlistClick = {
+                        viewModel.toggleWishlist()
+                    },
                     modifier = Modifier
                         .fillMaxSize()
                         .safeDrawingPadding()
@@ -93,13 +96,13 @@ private fun ObserveEvents(
     events: Flow<AppDetailsEvent>,
     snackbarHostState: SnackbarHostState,
 ) {
-    val underDevelopementText = stringResource(R.string.under_development)
+    val underDevelopmentText = stringResource(R.string.under_development)
 
     LaunchedEffect(Unit) {
         events.collect { event ->
             when (event) {
                 is AppDetailsEvent.UnderDevelopment -> {
-                    snackbarHostState.showSnackbar(underDevelopementText)
+                    snackbarHostState.showSnackbar(underDevelopmentText)
                 }
             }
         }

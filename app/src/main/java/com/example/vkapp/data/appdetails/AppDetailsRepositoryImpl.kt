@@ -7,7 +7,9 @@ import com.example.vkapp.domain.appdetails.AppDetails
 import com.example.vkapp.domain.appdetails.AppDetailsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -33,5 +35,19 @@ class AppDetailsRepositoryImpl @Inject constructor(
                 domain
             }
         }
+    }
+
+    override suspend fun toggleWishlist(id: String) {
+        val currentEntity = dao.getAppDetails(id).first()
+        currentEntity?.let {
+            dao.updateWishlistStatus(id, !it.isInWishlist)
+        }
+    }
+
+    override fun observeAppDetails(id: String): Flow<AppDetails> {
+        return dao.getAppDetails(id)
+            .mapNotNull { entity ->
+                entity?.let { entityMapper.toDomain(it) }
+            }
     }
 }
