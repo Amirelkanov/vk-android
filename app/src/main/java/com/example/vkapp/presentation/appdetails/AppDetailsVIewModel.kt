@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vkapp.domain.appdetails.GetAppDetailsUseCase
+import com.example.vkapp.domain.appdetails.AppDetailsRepository
 import com.example.vkapp.navigation.AppDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AppDetailsViewModel @Inject constructor(
-    private val getAppDetailsUseCase: GetAppDetailsUseCase,
+    private val appDetailsRepository: AppDetailsRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     // Лучше в худшем случае падать - если у нас нет такого аргумента,
@@ -33,6 +33,7 @@ class AppDetailsViewModel @Inject constructor(
     val events = _events.receiveAsFlow()
 
     init {
+        observeAppDetails()
         getAppDetails()
     }
 
@@ -52,19 +53,35 @@ class AppDetailsViewModel @Inject constructor(
         }
     }
 
+    fun toggleWishlist() {
+        viewModelScope.launch {
+            appDetailsRepository.toggleWishlist(appId)
+        }
+    }
+
     fun getAppDetails() {
         viewModelScope.launch {
             _state.value = AppDetailsState.Loading
 
-            getAppDetailsUseCase(appId).catch { e ->
+            appDetailsRepository.get(appId).catch { e ->
                 _state.value = AppDetailsState.Error
                 Log.d("HOHOHO", "ERROR $e")
-            }.collect { appDetails ->
-                _state.value = AppDetailsState.Content(
-                    appDetails = appDetails,
-                    descriptionCollapsed = false
-                )
-            }
+            }.collect { }
+        }
+    }
+
+    private fun observeAppDetails() {
+        viewModelScope.launch {
+            appDetailsRepository.observeAppDetails(appId)
+                .catch {
+                    _state.value = AppDetailsState.Error
+                }
+                .collect { appDetails ->
+                    _state.value = AppDetailsState.Content(
+                        appDetails = appDetails,
+                        descriptionCollapsed = false
+                    )
+                }
         }
     }
 }
